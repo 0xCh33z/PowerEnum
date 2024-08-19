@@ -260,7 +260,6 @@ function Get-InstalledApplications {  # Thanks, Ace https://serverfault.com/revi
 Print-CringeAscii
 Print-Timestamp
 
-# System Information
 Get-SystemInfo
 Get-RunningProcesses
 Get-RunningServices
@@ -271,17 +270,11 @@ Get-LocalUsers
 Get-SMBShares
 Get-AutoRunKey
 Get-ScheduledTasks
-
-# Network and Security Information
 Get-HostsFile
 Get-WifiCredentials
 Get-ActiveConnections
 Get-NetworkInterfaces
 Get-RoutingTable
-
-# Files and History
 Get-InterestingFiles
-Get-PowerShellHistory
-
-# Applications
 Get-InstalledApplications
+Get-PowerShellHistory
