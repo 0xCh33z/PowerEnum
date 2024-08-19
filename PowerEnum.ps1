@@ -206,9 +206,7 @@ function Get-InterestingFiles {
 
 function Get-PowerShellHistory {
     Print-Separator "PowerShell History"
-    $powershellHistory = gc (Get-PSReadLineOption).HistorySavePath |
-        foreach { "$_" }
-
+    $powershellHistory = gc (Get-PSReadLineOption).HistorySavePath | Out-String
     write $powershellHistory
 }
 
@@ -276,5 +274,5 @@ Get-ActiveConnections
 Get-NetworkInterfaces
 Get-RoutingTable
 Get-InterestingFiles
-Get-InstalledApplications
 Get-PowerShellHistory
+Get-InstalledApplications
