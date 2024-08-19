@@ -20,15 +20,18 @@ function Print-CringeAscii {
     Write-Host ""
 }
 
-function Print-Separator([string]$sectionName) {
+function Print-Separator([string]$sectionName) {   
     $separatorOne = "<-_,.-'~'-.,__,.-'~'-.,__,.-'{ "
     $separatorTwo = " }'-.,__,.-'~'-.,__,.-'~'-.,_->"
+    $separatorThree = ("`/^(o.o)^\" * 9) + "`n"
 
-    Write-Host ""
-    Write-Host $separatorOne -ForegroundColor Red -NoNewline
-    Write-Host $sectionName -ForegroundColor White -NoNewline
-    Write-Host $separatorTwo -ForegroundColor Red
-    Write-Host ""
+    write $separatorThree
+    write $separatorOne$sectionName$separatorTwo
+    write ""
+
+    write $separatorThree
+
+    write $separatorThree | Out-Null
 }
 
 function Print-Timestamp {
@@ -53,6 +56,7 @@ function Get-SystemInfo {
     $osVersion = gwmi -class Win32_OperatingSystem | select -ExpandProperty Version | foreach { $_ -replace('\.\d+$','').trim() }
     $osArchitecture = (gwmi -ClassName Win32_OperatingSystem).OSArchitecture
     write "[+] Operating System:`t $osName $osArchitecture (Version: $osVersion, Build: $osBuild)"
+    write ""
 }
 
 function Get-LocalGroups {
@@ -129,7 +133,13 @@ function Get-UnquotedServicePaths {
         select Name, PathName, StartMode, State
     
     Print-Separator "Unquoted Service Paths"
-    write $unquotedServicePaths
+
+    if ($unquotedServicePaths.length -le 1) {
+        write "No unquoted service paths found."
+        write ""
+    } else {
+        write $unquotedServicePaths
+        }
 }
 
 
@@ -257,7 +267,6 @@ function Get-InstalledApplications {  # Thanks, Ace https://serverfault.com/revi
 # Execute Functions
 Print-CringeAscii
 Print-Timestamp
-
 Get-SystemInfo
 Get-RunningProcesses
 Get-RunningServices
@@ -274,5 +283,5 @@ Get-ActiveConnections
 Get-NetworkInterfaces
 Get-RoutingTable
 Get-InterestingFiles
+Get-InstalledApplications | Out-String
 Get-PowerShellHistory
-Get-InstalledApplications
