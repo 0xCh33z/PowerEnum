@@ -5,9 +5,13 @@ Usage: `.\PowerUp.ps1`
 
 Enumerates:
 ✅ Basic host information (Username, Hostname, Domain, OS)
+
 ✅ Running Processes
+
 ✅ Running Services
+
 ✅ Unquoted Service Paths
+
 ✅ Groups
 ✅ Privileges
 ✅ Local Users
