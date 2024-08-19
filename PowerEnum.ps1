@@ -1,4 +1,4 @@
-﻿<#
+<#
 references
 https://github.com/absolomb/WindowsEnum/blob/master/WindowsEnum.ps1
 https://github.com/peass-ng/PEASS-ng/blob/master/winPEAS/winPEASps1/winPEAS.ps1
@@ -66,7 +66,6 @@ function Get-LocalGroups {
 
 function Get-Privileges {
     $privileges = whoami /priv |
-        where { $_ -notmatch 'PRIVILEGES INFORMATION|----------------------' } |
         foreach { $_ -replace '(State|Enabled|Disabled|========|PRIVILEGES INFORMATION|----------------------)\s*$', '' } |
         Out-String
 
@@ -207,7 +206,7 @@ function Get-InterestingFiles {
 
 function Get-PowerShellHistory {
     Print-Separator "PowerShell History"
-    $powershellHistory = (Get-History).CommandLine |
+    $powershellHistory = gc (Get-PSReadLineOption).HistorySavePath |
         foreach { "$_" }
 
     write $powershellHistory
