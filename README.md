@@ -1,2 +1,4 @@
 # PowerEnum
-Designed to gather basic information from a Windows host.
+Designed to automate information gathering on Windows hosts for the OSCP. 
+
+Usage: `.\PowerUp.ps1`
