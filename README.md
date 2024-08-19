@@ -1,7 +1,7 @@
 # PowerEnum
 Designed to automate information gathering on Windows hosts.
 
-Usage: `.\PowerUp.ps1`
+Usage: `.\PowerEnum.ps1`
 
 Enumerates:
 
